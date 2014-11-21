@@ -4,6 +4,8 @@ import basic.creator.ChapterSelectorService;
 import basic.reader.FileReaderService;
 import basic.reader.FolderReaderService;
 import basic.util.BookUtil;
+import basic.writer.FileService;
+import basic.writer.FolderCreatorService;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -13,6 +15,7 @@ import static basic.creator.ChapterSelectorService.separateChapters;
 import static basic.reader.FileReaderService.getFixedFileLines;
 import static basic.reader.FolderReaderService.readFilesInFolder;
 import static basic.util.BookUtil.getBookNameOnly;
+import static basic.writer.FileService.createFileAndWrite;
 
 /**
  * @author aisajbegovic
@@ -44,7 +47,14 @@ public class RunParserService {
 
         // create chapter files
         for (String outputFolderName : CHAPTERS.keySet()) {
+            FolderCreatorService.createFolder(property + FOLDER_OUTPUT, outputFolderName);
+            HashMap<String, Collection<String>> chapters = CHAPTERS.get(outputFolderName);
 
+            for (String chapter : chapters.keySet()) {
+                createFileAndWrite(property + FOLDER_OUTPUT + "/" + outputFolderName, chapter, chapters.get(chapter));
+            }
         }
+
+
     }
 }

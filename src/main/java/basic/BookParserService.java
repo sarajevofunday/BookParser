@@ -8,6 +8,8 @@ import java.util.HashMap;
 /**
  * @author aisajbegovic
  * @since 21.11.2014
+ *
+ * old code
  */
 public class BookParserService {
     public static final String FOLDER_INPUT = "\\input\\";
@@ -16,6 +18,7 @@ public class BookParserService {
     private static String property = System.getProperty("user.home");
     private static HashMap<String, Integer> usedNamesForChapters = new HashMap<String, Integer>(100);
 
+    @Deprecated
     public static void main(String[] args) throws Exception {
         boolean first = true;
         String folderName = "secondBookColumbus";
@@ -103,13 +106,14 @@ public class BookParserService {
 
         int numberOfLines = fixedLines.size();
         int counter = 0;
+        BufferedWriter output = null;
 
         try {
             String name = property + FOLDER_OUTPUT + folderName + "\\" + chapterName + integer + ".txt";
             System.out.println("creating file: " + name);
             File file = new File (name);
             System.out.println("File created!");
-            BufferedWriter output = new BufferedWriter(new FileWriter(file));
+            output = new BufferedWriter(new FileWriter(file));
             System.out.println("number of lines: " + fixedLines.size());
             for(String fixedLine : fixedLines) {
                 counter++;
@@ -125,6 +129,14 @@ public class BookParserService {
 
         } catch (Exception e) {
             System.out.println("error with output: " + e);
+        } finally {
+            if (output != null) {
+                try {
+                    output.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
