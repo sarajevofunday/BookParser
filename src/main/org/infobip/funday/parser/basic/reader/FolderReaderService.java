@@ -1,4 +1,4 @@
-package parser.basic.reader;
+package main.org.infobip.funday.parser.basic.reader;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -24,7 +24,7 @@ public class FolderReaderService {
                files.add(filePath.getFileName().toString());
            }
         });
-
+        System.out.println("files: " + files);  // BRISATI
         return files;
     }
 

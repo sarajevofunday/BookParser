@@ -1,11 +1,9 @@
-package parser.basic;
+package main.org.infobip.funday.parser.basic;
 
-import javax.xml.transform.sax.SAXSource;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Properties;
 
 /**
  * @author aisajbegovic
