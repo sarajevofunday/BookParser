@@ -1,4 +1,4 @@
-package main.org.infobip.funday.parser.basic.reader;
+package basic.reader;
 
 import java.io.BufferedReader;
 import java.io.File;

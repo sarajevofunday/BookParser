@@ -1,4 +1,4 @@
-package main.org.infobip.funday.parser.basic;
+package basic;
 
 import java.io.*;
 import java.util.ArrayList;
