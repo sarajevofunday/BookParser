@@ -3,6 +3,7 @@ package basic.run;
 import basic.creator.ChapterSelectorService;
 import basic.reader.FileReaderService;
 import basic.reader.FolderReaderService;
+import basic.util.BookUtil;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -11,6 +12,7 @@ import java.util.HashMap;
 import static basic.creator.ChapterSelectorService.separateChapters;
 import static basic.reader.FileReaderService.getFixedFileLines;
 import static basic.reader.FolderReaderService.readFilesInFolder;
+import static basic.util.BookUtil.getBookNameOnly;
 
 /**
  * @author aisajbegovic
@@ -21,6 +23,7 @@ public class RunParserService {
     public static final String FOLDER_OUTPUT = "/output";
     private static String property = System.getProperty("user.home");
     private static HashMap<String, Collection<String>> BOOKS = new HashMap<>(1000);
+    private static HashMap<String, HashMap<String, Collection<String>>> CHAPTERS = new HashMap<>(100000);
 
     public static void main(String[] args) throws IOException {
         // get books
@@ -36,14 +39,12 @@ public class RunParserService {
         for (String book : bookNames) {
             Collection<String> bookLines = BOOKS.get(book);
             HashMap<String, Collection<String>> chapterMap = separateChapters(bookLines);
-
-//            for (String chapter : chapterMap.keySet()) {
-//                System.out.println("book=" + book + ", chapter=" + chapter + ": " + chapterMap.get(chapter));
-//            }
+            CHAPTERS.put(getBookNameOnly(book), chapterMap);
         }
 
-        
-
         // create chapter files
+        for (String outputFolderName : CHAPTERS.keySet()) {
+
+        }
     }
 }
